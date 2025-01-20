@@ -1,0 +1,16 @@
+{
+  "table": {
+    "no": "NO",
+    "department": "Department",
+    "accessible_menu": "Accessible Menu",
+    "human_resource_mgt": "Human Resources Management",
+    "progress_list": "Progress list",
+    "stop_list": "Stop list",
+    "completed_list": "Completed list",
+    "reporting_data": "Reporting data",
+    "changed_date": "Status change date",
+    "action": "Action",
+    "placeholder_dep": "Enter the department name."
+  },
+  "auto_registration": "System Auto-registration"
+}

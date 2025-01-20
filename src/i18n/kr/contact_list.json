@@ -1,0 +1,76 @@
+{
+  "name": "담당자명",
+  "placeholder_name": "담당자명을 입력하세요.",
+  "department": "소속 부서",
+  "authority": "권한 ",
+  "title_add": "담당자 추가 등록",
+  "title_edit": "담당자 정보 수정",
+
+  "opts_authority": {
+    "all": "전체",
+    "administrator": "관리자",
+    "representative": "담당자"
+  },
+
+  "opts_departments": {
+    "all": "전체",
+    "master": "마스터",
+    "financial": "경정팀",
+    "general_team": "총무팀",
+    "relax_team": "리택스팀",
+    "sales": "영업자"
+  },
+
+  "table": {
+    "no": "NO",
+    "employee_name": "담당자 명",
+    "department": "소속 부서",
+    "authority": "권한",
+    "email": "이메일",
+    "personal_number": "연락처",
+    "office_number": "내선번호",
+    "action": "관리",
+    "confirm_delete": "해당 사용자를 삭제하시겠습니까? 삭제된 사람은 시스템에 로그인할 수 없습니다."
+  },
+
+  "form": {
+    "employee_name": "담당자 명",
+    "department": "소속 부서",
+    "authority": "권한",
+    "email": "이메일",
+    "personal_number": "연락처",
+    "office_number": "내선번호",
+    "additional": "추가 정보",
+    "bank": "은행",
+    "account_number": "계좌번호",
+    "account_holder": "예금주",
+    "resident_registration": "사업자 번호 (또는 주민번호)",
+
+    "placeholder_employee_name": "담당자 명을 입력해주세요.",
+    "placeholder_email": "이메일 주소를 입력해주세요.",
+    "placeholder_personal_phone": "연락처를 입력해주세요.",
+    "required_employee_name": "담당자 명을 입력해주세요.",
+    "required_email": "이메일 주소를 입력해주세요.",
+    "required_department": "부서를 선택해주세요.",
+    "required_authority": "권한을 선택해주세요.",
+    "required_personal_phone": "연락처를 입력해 주세요.",
+    "invalid_email": "이메일이 유효하지 않습니다. 다시 시도해 주세요!",
+    "duplicate_email": "중복된 이메일입니다.",
+    "duplicate_phone": "중복된 전화번호입니다.",
+    "invalid_personal_phone": "연락처가 유효하지 않습니다. 다시 시도해 주세요!",
+    "required_office_number": "내선 번호를 입력해 주세요.",
+    "invalid_office_phone": "내선 번호가 유효하지 않습니다. 다시 시도해 주세요!",
+    "invalid_bank_account": "은행계좌번호가 유효하지 않습니다. 다시 시도해주세요!",
+    "placeholder_bank_account": "은행을 입력해주세요.",
+    "placeholder_account_holder": "예금주를 입력해주세요."
+  },
+  "select": "선택",
+
+  "btn": {
+    "reset": "Reset",
+    "check": "Check",
+    "add": "담당자 추가 등록"
+  },
+
+  "no_data": "데이터가 없습니다"
+}

@@ -1,0 +1,77 @@
+{
+  "main": "MAIN KR",
+  "cancel": "Cancel",
+  "save": "저장",
+  "confirm": "Xác nhận",
+  "btn": {
+    "reset": "초기화",
+    "check": "조회"
+  },
+  "no_data": "데이터가 없습니다",
+  "error": {
+    "SYSTEM_ERROR": "SYSTEM_ERROR",
+    "INVALID_TOKEN": "INVALID_TOKEN",
+    "TOKEN_EXPIRED": "TOKEN_EXPIRED",
+    "SEND_CMD_ERROR": "SEND_CMD_ERROR",
+    "USER_EXISTED_WITH_OTHER_ROLE": "USER_EXISTED_WITH_OTHER_ROLE",
+    "USER_NOT_FOUND": "이메일이 잘못되었습니다. 다시 시도해 주세요!",
+    "USER_DELETED_OR_BANNER": "이메일 또는 비밀번호가 잘못되었습니다. 다시 시도해 주세요!",
+    "EMAIL_EXISTED": "EMAIL_EXISTED",
+    "USER_WAITING_VERIFY": "USER_WAITING_VERIFY",
+    "OTP_NOT_EXSIT_OR_EXPIRE": "링크가 만료되었습니다. 다시 시도해 주세요!",
+    "OTP_WRONG": "OTP_WRONG",
+    "OTP_EXPIRED": "OTP_EXPIRED",
+    "USER_READY_VERIFY": "USER_READY_VERIFY",
+    "WRONG_USER_OR_PASSWORD": "이메일 또는 비밀번호가 잘못되었습니다. 다시 시도해  주세요!",
+    "CURRENT_PASSWORD_INCORRECT": "현재 비밀번호가 일치하지 않습니다.",
+    "EMAIL_HAS_LINKED_SOCIAL": "EMAIL_HAS_LINKED_SOCIAL",
+    "INVALID_DATA": "INVALID_DATA",
+    "EMAIL_OR_PHONENUM_EXISTED": "EMAIL_OR_PHONENUM_EXISTED",
+    "DEPARTMENT_EXISTED": "DEPARTMENT_EXISTED",
+    "DEPARTMENT_NOT_FOUND": "DEPARTMENT_NOT_FOUND",
+    "NETWORK_ERROR": "네트워크 오류. 다시 시도해 주세요!",
+    "PAYMENT_ERROR": "결제 요청에 실패했습니다. 다시 시도해 주세요!",
+    "MODIFY_CONTRACT_STT": "계약 상태를 수정할 수 없습니다. 계약 상세내용을 다시 확인해 주세요."
+  },
+  "menu": {
+    "human_resource_mgt": "인사 관리",
+    "department_mgt": "부서 관리",
+    "contact_person_mgt": "담당자 목록",
+    "progress_mgt": "진행 목록",
+    "new_company": "신규업체 진행 목록",
+    "bookkeeping_company": "기장업체 진행 목록",
+    "break_mgt": "중단 목록",
+    "contact_failures_mgt": "계약 실패 목록",
+    "application_withdrawals_mgt": "접수 취하 목록",
+    "completion_mgt": "완료 목록",
+    "settlement_mgt": "정산 목록",
+    "reporting_material": "보고 자료"
+  },
+  "table": {
+    "items": "{{option}}개씩 보기",
+    "total": "총 {{total}}건 ",
+    "select_items": " 선택 {{count}}건"
+  },
+  "permission_denied": {
+    "title": "권한이 거부되었습니다.",
+    "content": "권한을 확인하기 위해 다시 로그인해 보세요.\n 또는 추가 지원이 필요하면 시스템 관리자에게 문의하세요."
+  },
+  "filename_export": {
+    "new_business": "신규업체 진행",
+    "bookkeeping": "기장업체 진행",
+    "contract_failured": "계약 실패",
+    "withdrawl": "접수 취하",
+    "completion": "정산 목록",
+    "export_template": "완료 계약 수정"
+  },
+  "upload": {
+    "title": "파일 업로드",
+    "file_here": "파일이 여기에 있습니다.",
+    "btn": "파일 업로드",
+    "wrong_file_type": "파일 형식이 잘못되었습니다. 다시 시도해 주세요!",
+    "error_template": "파일 템플렛이 잘못되었습니다. 다시 시도해 주세요!",
+    "item_error": "{{contract_id}}의 {{field}} 필드가 잘못되었습니다. 올바른 형식으로 다시 시도해주세요!",
+    "title_popup_err": "업로드 오류",
+    "copy": "전체 복사"
+  }
+}

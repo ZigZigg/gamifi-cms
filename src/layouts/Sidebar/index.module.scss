@@ -1,0 +1,9 @@
+.sidebar {
+  height: calc(100vh - 64px);
+  @apply border-0 bg-white relative;
+  transition: transform 300ms ease-in;
+  &_is_hidden {
+    transform: translateX(-240px);
+    transition: transform 300ms ease-out;
+  }
+}

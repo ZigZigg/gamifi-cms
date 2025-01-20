@@ -1,0 +1,54 @@
+{
+  "filter": {
+    "date": "Deposit date classification",
+    "company_class": "Company name classification",
+    "plc_company_class": "Please enter your company name",
+    "type": "Business Type",
+    "sale_person_class": "Salesperson classification",
+    "plc_sale_person_class": "Please enter your salesperson name"
+  },
+  "company_class": {
+    "all": "All",
+    "business_name": "Business name",
+    "representative": "Representative",
+    "business_number": "Business Number"
+  },
+  "table": {
+    "import": "Import",
+    "no": "NO",
+    "contract_id": "Contract ID",
+    "company_name": "Company Name",
+    "deposit_date": "Deposit Date",
+    "deposit_amount": "Deposit Amount",
+    "deposit_destination": "Deposit Destination",
+    "business_type": "Business Type",
+    "refund_amount": "Refund Amount",
+    "fee": "Fee (Excluding VAT)",
+    "sale": "Salesperson",
+    "other_fee": "Other Fees",
+    "note": "Note",
+    "rate": "Settlement Rate",
+    "supply_price": "Supply Price",
+    "vat": "VAT",
+    "income_tax": "Business Income Tax",
+    "amount": "Settlement Amount",
+    "type": "Settlement Type",
+    "bill": "Bill",
+    "bank": "Bank",
+    "bank_account": "Bank account number",
+    "account_holder": "Account Holder",
+    "business_registration_num": "Business Registration Number",
+    "registration": "Registration"
+  },
+  "payout_type": {
+    "choice": "choice",
+    "bill": "bill"
+  },
+  "business_type": {
+    "new_business": "New business",
+    "inbound": "Inbound"
+  },
+  "err": {
+    "bank_account": "은행계좌번호가 유효하지 않습니다. 다시 시도해주세요!"
+  }
+}

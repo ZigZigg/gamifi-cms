@@ -1,0 +1,7 @@
+.main {
+	width: 100vw;
+}
+
+.container {
+	@apply flex h-[calc(100vh-72px)] overflow-auto;
+}

@@ -1,0 +1,14 @@
+version: '3'
+services:
+  sac_frontend:
+    image: registry.savvycom.vn/kgi-sac/web:latest
+    container_name: sac_frontend_container
+    volumes:
+      - /app/node_modules
+      - /app/dist
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    privileged: true
+    ports:
+      - "4173:80"

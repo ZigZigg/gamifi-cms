@@ -1,0 +1,41 @@
+@import '@/styles/_mixins.scss';
+@import '@/styles/constants.scss';
+
+.button {
+  width: auto;
+  box-shadow: none;
+  &__primary {
+    background-color: $color-primery-700;
+    color: $color-white;
+  }
+
+  &__outline {
+    background-color: $bg-white;
+    color: $color-body-text;
+    border: thin solid $color-danger;
+  }
+
+  &__md {
+    height: 44px !important;
+    padding: 11px 22px;
+    line-height: 22px;
+    font-size: 16px;
+    border-radius: 4px;
+  }
+
+  &__sm {
+    height: 28px !important;
+    padding: 4px 8px;
+    line-height: 20px;
+    font-size: 14px;
+    border-radius: 4px;
+  }
+
+  &__light {
+    font-weight: 400;
+  }
+
+  &__bold {
+    font-weight: 700;
+  }
+}

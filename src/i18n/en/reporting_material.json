@@ -1,0 +1,12 @@
+{
+  "reporting_material": "Reporting material",
+  "management_list": "Management list",
+  "report_summary": "Report Summary",
+  "report_date": "Report date",
+  "generate_report": "Generate Report",
+  "err_select_date": "To generate a report, please select a date from the filter.",
+  "new_company": "New company",
+  "unrecovered_list": "Unrecovered list",
+  "non_receipt_list": "Non-receipt list",
+  "progress_list": "Progress list"
+}

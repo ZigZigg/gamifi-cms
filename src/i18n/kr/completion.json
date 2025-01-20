@@ -1,0 +1,54 @@
+{
+  "filter": {
+    "date": "입금일자 구분",
+    "company_class": "업체명 구분",
+    "plc_company_class": "업체명을 입력하세요.",
+    "type": "업체 유형 구분",
+    "sale_person_class": "영업자 구분",
+    "plc_sale_person_class": "영업자명을 입력하세요."
+  },
+  "company_class": {
+    "all": "전체",
+    "business_name": "업체명",
+    "representative": "대표자",
+    "business_number": "사업자번호"
+  },
+  "table": {
+    "import": "엑셀 업로드",
+    "no": "NO",
+    "contract_id": "계약 ID",
+    "company_name": "업체",
+    "deposit_date": "입금일자",
+    "deposit_amount": "입금액",
+    "deposit_destination": "입금처",
+    "business_type": "업체 유형",
+    "refund_amount": "환급액",
+    "fee": "수수료(VAT제외)",
+    "sale": "영업자",
+    "other_fee": "기타 수수료",
+    "note": "비고",
+    "rate": "정산율",
+    "supply_price": "공급가액",
+    "vat": "부가세",
+    "income_tax": "사업소득세",
+    "amount": "정산금액",
+    "type": "정산유형",
+    "bill": "계산서",
+    "bank": "은행",
+    "bank_account": "계좌번호",
+    "account_holder": "예금주",
+    "business_registration_num": "사업자번호(또는 주민번호)",
+    "registration": "등록"
+  },
+  "payout_type": {
+    "choice": "선택",
+    "bill": "계산서"
+  },
+  "business_type": {
+    "individual": "개인",
+    "corporation": "법인"
+  },
+  "err": {
+    "bank_account": "은행계좌번호가 유효하지 않습니다. 다시 시도해주세요!"
+  }
+}

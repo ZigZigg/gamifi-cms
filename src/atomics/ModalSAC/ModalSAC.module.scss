@@ -1,0 +1,42 @@
+@import '@/styles/constants.scss';
+@import '@/styles/_mixins.scss';
+
+.modal {
+  :global {
+    .ant-modal-content {
+      padding: 32px 24px 40px 24px;
+      border-radius: 12px;
+      border: 1px solid $disabled-input;
+      background-color: $bg-white !important;
+    }
+  }
+
+  &__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 40px;
+  }
+  &__title {
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 600;
+    color: #272b31;
+    margin-bottom: 0;
+    margin-top: 0;
+    line-height: 40px;
+  }
+
+  &__content {
+    margin: 56px 0 32px 0;
+  }
+
+  &__buttons {
+    display: grid;
+    grid-template-columns: repeat(2, 140px);
+    justify-content: end;
+    padding-top: 1rem;
+
+    grid-column-gap: 8px;
+  }
+}

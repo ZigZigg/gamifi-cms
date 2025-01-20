@@ -1,0 +1,6 @@
+build/*,
+*.spec.ts
+*.test.tsx
+*.d.ts
+index.css
+tailwind.config.js

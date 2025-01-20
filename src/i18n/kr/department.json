@@ -1,0 +1,16 @@
+{
+  "table": {
+    "no": "NO",
+    "department": "부서명",
+    "accessible_menu": "접근 가능 메뉴",
+    "human_resource_mgt": "인사관리",
+    "progress_list": "진행목록",
+    "stop_list": "중단목록",
+    "completed_list": "완료목록",
+    "reporting_data": "보고자료",
+    "changed_date": "상태 변경일",
+    "action": "관리",
+    "placeholder_dep": "부서(장)명을 입력하세요."
+  },
+  "auto_registration": "시스템 자동 등록"
+}

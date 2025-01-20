@@ -1,0 +1,35 @@
+.main {
+  display: flex;
+}
+.contract {
+  width: 257px;
+  height: 60px;
+  background-color: #022baa;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.content {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: nowrap;
+  padding: 0 24px;
+  border: 1px solid #efefef;
+  border-left: none;
+  color: #5a5b5e;
+  :global {
+    .ant-input {
+      width: 30px;
+      border-radius: 0px;
+      border: none;
+      border-bottom: 1px solid #000000;
+      padding: 0px;
+      text-align: center;
+      color: #5A5B5E;
+    }
+  }
+}

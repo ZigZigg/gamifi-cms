@@ -1,0 +1,77 @@
+{
+  "main": "MAIN EN",
+  "cancel": "Cancel",
+  "save": "Save",
+  "confirm": "Confirm",
+  "btn": {
+    "reset": "Reset",
+    "check": "Check"
+  },
+  "no_data": "No data found",
+  "error": {
+    "SYSTEM_ERROR": "SYSTEM_ERROR",
+    "INVALID_TOKEN": "INVALID_TOKEN",
+    "TOKEN_EXPIRED": "TOKEN_EXPIRED",
+    "SEND_CMD_ERROR": "SEND_CMD_ERROR",
+    "USER_EXISTED_WITH_OTHER_ROLE": "USER_EXISTED_WITH_OTHER_ROLE",
+    "USER_NOT_FOUND": "Email is invalid. Please try again!",
+    "USER_DELETED_OR_BANNER": "Wrong email or Password. Please try again!",
+    "EMAIL_EXISTED": "EMAIL_EXISTED",
+    "USER_WAITING_VERIFY": "USER_WAITING_VERIFY",
+    "OTP_NOT_EXSIT_OR_EXPIRE": "Retrieving data. Wait a few seconds and try to cut or copy again.",
+    "OTP_WRONG": "OTP_WRONG",
+    "OTP_EXPIRED": "OTP_EXPIRED",
+    "USER_READY_VERIFY": "USER_READY_VERIFY",
+    "WRONG_USER_OR_PASSWORD": "Wrong email or password. Please try again!",
+    "CURRENT_PASSWORD_INCORRECT": "Your current password does not match.",
+    "EMAIL_HAS_LINKED_SOCIAL": "EMAIL_HAS_LINKED_SOCIAL",
+    "INVALID_DATA": "INVALID_DATA",
+    "EMAIL_OR_PHONENUM_EXISTED": "EMAIL_OR_PHONENUM_EXISTED",
+    "DEPARTMENT_EXISTED": "DEPARTMENT_EXISTED",
+    "DEPARTMENT_NOT_FOUND": "DEPARTMENT_NOT_FOUND",
+    "NETWORK_ERROR": "Network error. Please try again!",
+    "PAYMENT_ERROR": "Payment request failed. Please try again!",
+    "MODIFY_CONTRACT_STT": "Unable to modify contract status. Please review the contract details again."
+  },
+  "menu": {
+    "human_resource_mgt": "Human Resources management",
+    "department_mgt": "Department management",
+    "contact_person_mgt": "Contact person list",
+    "progress_mgt": "Progress list",
+    "new_company": "New company",
+    "bookkeeping_company": "Bookkeeping company",
+    "break_mgt": "Break list",
+    "contact_failures_mgt": "List of contract failures",
+    "application_withdrawals_mgt": "List of application withdrawals",
+    "completion_mgt": "Completion list",
+    "settlement_mgt": "Settlement list",
+    "reporting_material": "Reporting material"
+  },
+  "table": {
+    "items": "Show {{option}}",
+    "total": "Total {{total}} items",
+    "select_items": "Select {{count}} items"
+  },
+  "permission_denied": {
+    "title": "Permission Denied",
+    "content": "Please try logging in again to ensure your permission,\nor contact your system administrator for further assistance"
+  },
+  "filename_export": {
+    "new_business": "신규업체 진행",
+    "bookkeeping": "기장업체 진행",
+    "contract_failured": "계약 실패",
+    "withdrawl": "접수 취하",
+    "completion": "정산 목록",
+    "export_template": "완료 계약 수정"
+  },
+  "upload": {
+    "title": "Upload files",
+    "file_here": "Your file will be display here.",
+    "btn": "Upload files",
+    "wrong_file_type": "Wrong file type. Please try again!",
+    "error_template": "Wrong template. Please try again!",
+    "item_error": "The {{field}} of {{contract_id}} is invalid. Please try again in correct format!",
+    "title_popup_err": "Popup error",
+    "copy": "Copy"
+  }
+}

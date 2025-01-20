@@ -1,0 +1,23 @@
+@import '@/styles/_mixins.scss';
+@import '@/styles/constants.scss';
+
+.status {
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 20px;
+  &__successful {
+    color: #28c76f;
+  }
+
+  &__cancel {
+    color: #ea5455;
+  }
+
+  &__pending {
+    color: #ff9f43;
+  }
+  &__refund {
+    color: #ea5455;
+  }
+}

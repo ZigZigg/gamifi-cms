@@ -1,0 +1,32 @@
+@import '@/styles/constants.scss';
+@import '@/styles/_mixins.scss';
+
+.modal {
+  :global {
+    .ant-modal-content {
+      padding: 32px 24px 40px 24px;
+      border-radius: 12px;
+      border: 1px solid $disabled-input;
+      background-color: $bg-white !important;
+    }
+  }
+  &__content {
+    font-size: 18px;
+    font-weight: 500;
+    color: #5a5b5e;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    :global {
+      .ant-btn {
+        width: fit-content !important;
+        padding: 0 42px;
+      }
+    }
+  }
+}

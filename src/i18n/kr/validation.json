@@ -1,0 +1,36 @@
+{
+  "required": "{{label}}를 입력해 주세요.",
+  "default": "Validation error on field '{{label}}'",
+  "enum": "'{{label}}' must be one of [{{enum}}]",
+  "whitespace": "'{{label}}' cannot be empty",
+  "date": {
+    "format": "'{{label}}' is invalid for format date",
+    "parse": "'{{label}}' could not be parsed as date",
+    "invalid": "'{{label}}' is invalid date"
+  },
+  "types": "{{label}} is not a valid {{type}}",
+  "string": {
+    "len": "{{label}} must be exactly {{len}} characters",
+    "min": "{{label}} must be at least {{min}} characters",
+    "max": "{{label}} cannot be longer than {{max}} characters",
+    "range": "{{label}} must be between {{min}} and {{max}} characters"
+  },
+  "number": {
+    "len": "{{label}} must equal {{len}}",
+    "min": "{{label}} cannot be less than {{min}}",
+    "max": "{{label}} cannot be greater than {{max}}",
+    "range": "{{label}} must be between {{min}} and {{max}}"
+  },
+  "array": {
+    "len": "{{label}} must be exactly {{len}} in length",
+    "min": "{{label}} cannot be less than {{min}} in length",
+    "max": "{{label}} cannot be greater than {{max}} in length",
+    "range": "{{label}} must be between {{min}} and {{max}} in length"
+  },
+  "pattern": {
+    "mismatch": "{{label}} does not match pattern {{pattern}}"
+  },
+
+  "passwordMatchValidator": "The two passwords that you entered do not match!",
+  "passwordSyntaxValidator": "Password must be included numbers, letters and special character"
+}

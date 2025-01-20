@@ -1,0 +1,55 @@
+default:
+  tags:
+    - sac-d2
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+  - node_modules/
+  - dist/
+
+stages:
+  - build_static
+  - deploy_static_dev
+  - deploy_static_stage
+
+build_static_for_release:
+  stage: build_static
+  image: docker:20.10.16
+  services:
+    - docker:20.10.16-dind
+  before_script:
+    - echo "DEV ENV ->>>" ${DEV_ENV_FILE}
+    - echo "STAGE ENV ->>>" ${STAGE_ENV_FILE}
+    - cat ${DEV_ENV_FILE}
+    - cat ${STAGE_ENV_FILE}
+    - if [ "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" = "develop-release" ]; then cp ${DEV_ENV_FILE} .env; fi
+    - if [ "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" = "stage-release" ]; then cp ${STAGE_ENV_FILE} .env; fi
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - if [ "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" = "develop-release" ]; then docker build -f Dockerfile --pull -t "$CI_REGISTRY_IMAGE:$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" .; fi
+    - if [ "$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" = "stage-release" ]; then docker build -f Dockerfile.staging --pull -t "$CI_REGISTRY_IMAGE:$CI_MERGE_REQUEST_TARGET_BRANCH_NAME" .; fi
+    - docker push "$CI_REGISTRY_IMAGE:$CI_MERGE_REQUEST_TARGET_BRANCH_NAME"
+    - echo "Registry image:" $CI_REGISTRY_IMAGE:$CI_MERGE_REQUEST_TARGET_BRANCH_NAME
+  rules:
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop-release" || $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "stage-release"'
+
+deploy_static_for_dev:
+  stage: deploy_static_dev
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - sh scripts/deploy-dev.sh
+  tags:
+    - sac-d2-shell
+  only:
+    - develop-release
+
+deploy_static_for_stage:
+  stage: deploy_static_stage
+  script:
+    - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+    - sh scripts/deploy-stage.sh
+  tags:
+    - sac-d2-shell
+  only:
+    - stage-release

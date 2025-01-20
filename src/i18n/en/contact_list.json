@@ -1,0 +1,76 @@
+{
+  "name": "Name of person in charge",
+  "placeholder_name": "Please enter the person in charge.",
+  "department": "Department",
+  "authority": "Authority",
+  "title_add": "Add Employee",
+  "title_edit": "Edit Employee",
+
+  "opts_authority": {
+    "all": "All",
+    "administrator": "Administrator",
+    "representative": "Representative"
+  },
+
+  "opts_departments": {
+    "all": "All",
+    "master": "Master",
+    "financial": "Financial team",
+    "general_team": "General affair team",
+    "relax_team": "Relax team",
+    "sales": "Sales"
+  },
+
+  "table": {
+    "no": "NO",
+    "employee_name": "Employee Name",
+    "department": "Department",
+    "authority": "Authority",
+    "email": "Email",
+    "personal_number": "Personal Phone Number",
+    "office_number": "Office Number",
+    "action": "Action",
+    "confirm_delete": "Are you sure you want to delete the person? A deleted person cannot log in to the system."
+  },
+
+  "form": {
+    "employee_name": "Employee Name",
+    "department": "Department",
+    "authority": "Authority",
+    "email": "Email",
+    "personal_number": "Personal Phone Number",
+    "office_number": "Office Number",
+    "additional": "Additional information",
+    "bank": "Bank",
+    "account_number": "Account Number Business",
+    "account_holder": "Account Holder",
+    "resident_registration": "Number (or resident registration number)",
+
+    "placeholder_employee_name": "Enter employee Name.",
+    "placeholder_email": "Enter your Email.",
+    "placeholder_personal_phone": "Enter your personal phone number.",
+    "required_employee_name": "Please enter employee name.",
+    "required_email": "Please enter your Email.",
+    "required_department": "Please select department.",
+    "required_authority": "Please select Authority.",
+    "required_personal_phone": "Please enter personal phone number.",
+    "invalid_email": "Email is invalid. Please try again!",
+    "duplicate_email": "This is duplicate email.",
+    "duplicate_phone": "This is duplicate phone number.",
+    "invalid_personal_phone": "Personal phone number is invalid. Please try again!",
+    "required_office_number": "Please enter office phone number.",
+    "invalid_office_phone": "Office phone number is invalid. Please try again!",
+    "invalid_bank_account": "Account Number Business is invalid. Please try again!",
+    "placeholder_bank_account": "Please enter your bank.",
+    "placeholder_account_holder": "Please enter the account holder."
+  },
+  "select": "Select",
+
+  "btn": {
+    "reset": "Reset",
+    "check": "Check",
+    "add": "Add new contact"
+  },
+
+  "no_data": "No data found"
+}

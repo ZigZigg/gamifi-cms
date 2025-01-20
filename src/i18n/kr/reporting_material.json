@@ -1,0 +1,12 @@
+{
+  "reporting_material": "보고 자료",
+  "management_list": "관리 목록 현황",
+  "report_summary": "대표님 보고자료",
+  "report_date": "보고일",
+  "generate_report": "보고서 다운",
+  "err_select_date": "보고서를 생성하려면 필터에서 날짜를 선택하세요.",
+  "new_company": "신규업체",
+  "unrecovered_list": "미회수리스트",
+  "non_receipt_list": "미접수리스트",
+  "progress_list": "진행리스트"
+}
