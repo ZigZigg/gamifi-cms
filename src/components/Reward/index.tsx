@@ -1,5 +1,5 @@
 import { useTableManagement } from '@/hooks/useTableManagement';
-import { useNotice } from '@/providers/NoticeProvider';
+// import { useNotice } from '@/providers/NoticeProvider';
 import { useGetRewardListQuery } from '@/stores/api/rewards';
 import { CustomColumnsType } from '@/types/progress';
 import { formatDateUTC } from '@/utils/date';
@@ -10,7 +10,7 @@ import {
   RewardStatus,
   TurnType,
 } from '@/types/reward';
-import { useCallback, useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import { DATE_FORMAT } from '@/constants';
 import BoxFilter from '@/atomics/BoxFilter/BoxFilter';
 import CommonTable from '@/atomics/CommonTable/CommonTable';
@@ -22,7 +22,7 @@ const RewardComponent = () => {
     type: TurnType.FREE,
   };
   const [filters, setFilters] = useState<IRewardListRequest>(initFilters);
-  const { openModal, closeModal } = useNotice();
+  // const { openModal, closeModal } = useNotice();
 
   const {
     handleChangePagination,
@@ -42,10 +42,10 @@ const RewardComponent = () => {
     current: Math.floor(queryParams.offset / queryParams.limit) + 1,
   };
 
-  const resetPagination = () => {
-    setFilters({ ...filters, offset: 0 });
-    onFiltering({ ...filters, offset: 0 });
-  };
+  // const resetPagination = () => {
+  //   setFilters({ ...filters, offset: 0 });
+  //   onFiltering({ ...filters, offset: 0 });
+  // };
 
   useEffect(() => {
     refetch();
@@ -58,25 +58,25 @@ const RewardComponent = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [data?.records]);
-  const onChangeSizePage = (pageSize: number | string) => {
-    setFilters({ ...filters, limit: Number(pageSize) });
-    onFiltering({ ...filters, limit: Number(pageSize) });
-  };
+  // const onChangeSizePage = (pageSize: number | string) => {
+  //   setFilters({ ...filters, limit: Number(pageSize) });
+  //   onFiltering({ ...filters, limit: Number(pageSize) });
+  // };
 
-  const onDelete = useCallback(
-    (event: React.MouseEvent<HTMLInputElement>, id: string) => {
-      event.stopPropagation();
-      openModal({
-        description: 'Bạn có muốn xóa phần quà này?',
-        width: 482,
-        onOk: () => {
-          closeModal();
-        },
-        onCancel: closeModal,
-      });
-    },
-    [closeModal, openModal]
-  );
+  // const onDelete = useCallback(
+  //   (event: React.MouseEvent<HTMLInputElement>, id: string) => {
+  //     event.stopPropagation();
+  //     openModal({
+  //       description: 'Bạn có muốn xóa phần quà này?',
+  //       width: 482,
+  //       onOk: () => {
+  //         closeModal();
+  //       },
+  //       onCancel: closeModal,
+  //     });
+  //   },
+  //   [closeModal, openModal]
+  // );
 
   const columns: CustomColumnsType<IReward> = [
     {

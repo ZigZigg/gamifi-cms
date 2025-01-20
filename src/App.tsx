@@ -7,6 +7,7 @@ import { ThemeContext } from './providers/ThemeContext';
 import { themeAntd } from './styles/themeColors';
 import { useContext, useMemo } from 'react';
 import { NoticeProvider } from './providers/NoticeProvider';
+import { NotificationProvider } from './providers/NotificationContext';
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -14,11 +15,14 @@ function App() {
 
   return (
     <ConfigProvider theme={antdTheme}>
-      <NoticeProvider>
-        <BrowserRouter>
-          <RouterList />
-        </BrowserRouter>
-      </NoticeProvider>
+      <NotificationProvider>
+        <NoticeProvider>
+          <BrowserRouter>
+            <RouterList />
+          </BrowserRouter>
+        </NoticeProvider>
+      </NotificationProvider>
+
     </ConfigProvider>
   );
 }

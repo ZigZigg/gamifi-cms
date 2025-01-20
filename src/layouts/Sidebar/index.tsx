@@ -10,10 +10,8 @@ import {
   ExceptionOutlined,
 } from '@ant-design/icons';
 import Sider from 'antd/es/layout/Sider';
-import { useTranslation } from 'react-i18next';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { IRoute, systemFlattenRoutes, systemRoutes } from '@/utils/helpers';
-import { useAppSelector } from '@/stores';
 
 type MenuItem = Required<MenuProps>['items'][number];
 
@@ -49,12 +47,10 @@ const MenuSymbols: any = {
 };
 
 const SideBar = () => {
-  const { t } = useTranslation(['common']);
   const [openKeys, setOpenKeys] = useState(['']);
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
-  const { accessMenu } = useAppSelector((state) => state.auth);
 
   const generateMenu = (routes: IRoute[]) => {
     return routes.map((route) => {

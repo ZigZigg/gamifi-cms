@@ -8,14 +8,12 @@ import { Outlet, useNavigate } from 'react-router-dom';
 import HeaderLayout from './Header';
 import SideBar from './Sidebar';
 import styles from './index.module.scss';
-import { useTranslation } from 'react-i18next';
 
 const MainLayout = () => {
   const { theme } = useContext(ThemeContext);
   const { isLoggedIn } = useAppSelector((state) => state.auth);
   const navigate = useNavigate();
 
-  const { t } = useTranslation(['progress']);
 
   useEffect(() => {
     if (isLoggedIn) {

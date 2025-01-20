@@ -1,11 +1,7 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { Form, FormInstance } from 'antd';
 import { formatDate } from '@/utils/date';
 import { DATE_FORMAT } from '@/constants';
-import { useUpdateProgressListMutation } from '@/stores/api/progress';
-import { IconType } from 'antd/es/notification/interface';
-import NotificationContext from '@/providers/NotificationContext';
-import { get } from 'lodash';
 import { useNotice } from '@/providers/NoticeProvider';
 import { useTranslation } from 'react-i18next';
 import { TYPE_DATA } from '@/types/progress';
@@ -46,27 +42,12 @@ const withEditableCell = (WrappedComponent: React.ComponentType<any>) => {
     ...rest
   }) => {
     const fieldName = `${field}-${record.id}`;
-    const { api } = useContext(NotificationContext);
 
     const [editing, setEditing] = useState(false);
     const { openModal, closeModal } = useNotice();
     const { t } = useTranslation(['progress', 'common']);
 
-    const onNotification = (
-      description: string,
-      type: IconType = 'success'
-    ) => {
-      api!.open({
-        message: '',
-        description,
-        duration: 2,
-        closeIcon: false,
-        type: type,
-      });
-    };
 
-    const [updateProgressList, { isError, error, isSuccess }] =
-      useUpdateProgressListMutation();
 
     const handleCellDoubleClick = (event: any) => {
       form.setFieldValue(fieldName, value);
@@ -75,21 +56,6 @@ const withEditableCell = (WrappedComponent: React.ComponentType<any>) => {
       event.stopPropagation();
     };
 
-    useEffect(() => {
-      if (isError) {
-        onNotification(
-          get(error, 'message') || get(error, 'data.message') || '',
-          'error'
-        );
-      }
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [error, isError]);
-
-    useEffect(() => {
-      if (isSuccess) {
-        setEditing(false);
-      }
-    }, [isSuccess]);
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
     const transformFieldValue = (fieldName: any) => {
@@ -145,15 +111,6 @@ const withEditableCell = (WrappedComponent: React.ComponentType<any>) => {
           return;
         }
 
-        const payload = parentField
-          ? {
-              id: record.id,
-              [parentField]: {
-                [field]: val,
-              },
-            }
-          : { id: record.id, [field]: val };
-        updateProgressList(payload);
       } catch (error) {
         console.log('Save error:', error);
       }
@@ -165,12 +122,6 @@ const withEditableCell = (WrappedComponent: React.ComponentType<any>) => {
         description: checked ? t('check_complete') : t('uncheck_complete'),
         width: 482,
         onOk: () => {
-          updateProgressList({
-            id: record.id,
-            [parentField]: {
-              [field]: checked,
-            },
-          });
           closeModal();
         },
         onCancel: () => {
