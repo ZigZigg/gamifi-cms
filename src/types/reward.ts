@@ -22,6 +22,24 @@ export interface IReward {
     turntype: ITurnType;
 }
 
+export interface IRewardRequest {
+    turnTypeId: number;
+    type: TurnType;
+    value: string;
+    quantity: number;
+    holdQuantity: number;
+    winningRate: number;
+    campaign: number;
+}
+
+export interface IRewardUpdateRequest extends IRewardRequest {
+    id: number
+}
+
+export interface IRewardDeleteRequest {
+    id: number;
+}
+
 export enum TurnType {
     FREE='FREE',
     PAID='PAID'

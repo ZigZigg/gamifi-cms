@@ -1,6 +1,6 @@
 import { useTableManagement } from '@/hooks/useTableManagement';
 // import { useNotice } from '@/providers/NoticeProvider';
-import { useGetRewardListQuery } from '@/stores/api/rewards';
+import { useDeleteRewardMutation, useGetRewardListQuery } from '@/stores/api/rewards';
 import { CustomColumnsType } from '@/types/progress';
 import { formatDateUTC } from '@/utils/date';
 import {
@@ -10,19 +10,39 @@ import {
   RewardStatus,
   TurnType,
 } from '@/types/reward';
-import {  useEffect, useState } from 'react';
+import {  useCallback, useContext, useEffect, useState } from 'react';
 import { DATE_FORMAT } from '@/constants';
 import BoxFilter from '@/atomics/BoxFilter/BoxFilter';
 import CommonTable from '@/atomics/CommonTable/CommonTable';
 import classes from './Reward.module.scss';
+import { Button } from 'antd';
+import DeleteIcon from '@/atomics/SvgIcons/DeleteIcon';
+import EditIcon from '@/atomics/SvgIcons/EditIcon';
+import { IconType } from 'antd/es/notification/interface';
+
+import ModalModifyReward from './components/ModalModifyReward';
+import { useAppDispatch } from '@/stores';
+import { getActiveCampaign, getListMasterData } from '@/stores/slices/common/common.slices';
+import { useNotice } from '@/providers/NoticeProvider';
+import NotificationContext from '@/providers/NotificationContext';
 const RewardComponent = () => {
   const initFilters = {
-    limit: 5,
+    limit: 10,
     offset: 0,
-    type: TurnType.FREE,
+    type: TurnType.PAID,
   };
   const [filters, setFilters] = useState<IRewardListRequest>(initFilters);
-  // const { openModal, closeModal } = useNotice();
+  const [openAdd, setOpenAdd] = useState<boolean>(false);
+  const [rewardEdit, setRewardEdit] = useState<IReward | undefined>(undefined);
+  const onAddNew = () => {
+    setOpenAdd(true);
+  };
+  const resetRewardEdit = () => {
+    setRewardEdit(undefined)
+  }
+  const dispatch = useAppDispatch();
+  const { openModal, closeModal } = useNotice();
+  const [deleteReward, {isSuccess: isSuccessDeleteReward}] = useDeleteRewardMutation()
 
   const {
     handleChangePagination,
@@ -36,12 +56,24 @@ const RewardComponent = () => {
     useGetRewardListQuery,
     filters
   );
+  const {type} = queryParams
+
   const paginationInfo = {
     total: data?.total || 0,
     pageSize: queryParams.limit,
     current: Math.floor(queryParams.offset / queryParams.limit) + 1,
   };
+  const { api } = useContext(NotificationContext);
 
+  const onNotification = (description: string, type: IconType = 'error') => {
+    api!.open({
+      message: '',
+      description,
+      duration: 2,
+      closeIcon: false,
+      type: type,
+    });
+  };
   // const resetPagination = () => {
   //   setFilters({ ...filters, offset: 0 });
   //   onFiltering({ ...filters, offset: 0 });
@@ -50,6 +82,8 @@ const RewardComponent = () => {
   useEffect(() => {
     refetch();
   }, []);
+
+
 
   useEffect(() => {
     if (data?.records.length === 0) {
@@ -63,21 +97,35 @@ const RewardComponent = () => {
   //   onFiltering({ ...filters, limit: Number(pageSize) });
   // };
 
-  // const onDelete = useCallback(
-  //   (event: React.MouseEvent<HTMLInputElement>, id: string) => {
-  //     event.stopPropagation();
-  //     openModal({
-  //       description: 'Bạn có muốn xóa phần quà này?',
-  //       width: 482,
-  //       onOk: () => {
-  //         closeModal();
-  //       },
-  //       onCancel: closeModal,
-  //     });
-  //   },
-  //   [closeModal, openModal]
-  // );
+  const onDelete = useCallback(
+    (event: React.MouseEvent<HTMLInputElement>, id: string) => {
+      event.stopPropagation();
+      openModal({
+        description: 'Bạn có muốn xóa phần quà này?',
+        width: 482,
+        onOk: () => {
+          deleteReward({id: Number(id)});
+          closeModal();
+        },
+        onCancel: closeModal,
+      });
+    },
+    [closeModal, openModal, deleteReward]
+  );
+  useEffect(() => {
+    if (isSuccessDeleteReward) {
+      onNotification('Xóa phần quà thành công!', 'success');
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccessDeleteReward]);
+  const onChangeTab = (type: TurnType) => {
+    onFiltering({ ...initFilters, type });
+  }
 
+  const onOpenEdit = (record: IReward) => {
+    setRewardEdit(record);
+    setOpenAdd(true);
+  }
   const columns: CustomColumnsType<IReward> = [
     {
       title: 'STT',
@@ -182,11 +230,89 @@ const RewardComponent = () => {
         <div>{formatDateUTC(value, DATE_FORMAT.DATE_DMY_Hms)}</div>
       ),
     },
+    {
+      title: 'Hành động',
+      dataIndex: 'action',
+      key: 'action',
+      width: 120,
+      align: 'center',
+      render: (_value, record) => {
+        return <div className="flex justify-center gap-2 hover:cursor-pointer">
+          <div
+            className={'cursor-pointer'}
+            onClick={(event: React.MouseEvent<HTMLInputElement>) => {
+              onDelete(event, record.id + '')
+            }
+            }
+          >
+            <DeleteIcon />
+          </div>
+          <div
+            className={'cursor-pointer'}
+            onClick={() => {
+              onOpenEdit(record);
+            }
+            }
+          >
+            <EditIcon />
+          </div>
+      </div>
+        
+      }
+    },
   ];
+
+  useEffect(() => {
+    const getMasterData = async () => {
+      await dispatch(getListMasterData());
+    };
+    getMasterData();
+  }, []);
+
+  useEffect(() => {
+    const getCampaign = async () => {
+      await dispatch(getActiveCampaign());
+    };
+    getCampaign();
+  }, []);
 
   return (
     <div className="relative flex flex-col gap-5">
       <BoxFilter className="px-0 py-8">
+        <div className='flex items-center justify-between px-6 pb-5 gap-4'>
+          <div className='flex items-center gap-4'>
+            <Button
+              size="large"
+              type={type === TurnType.PAID ? 'primary' : 'default'}
+              onClick={() => {
+                onChangeTab(TurnType.PAID);
+              }}
+              className="max-w-fit"
+            >
+              Lượt chơi mất phí
+            </Button>
+            <Button
+              size="large"
+              type={type === TurnType.FREE ? 'primary' : 'default'}
+              onClick={() => {
+              onChangeTab(TurnType.FREE);
+              }}
+              className="max-w-fit"
+            >
+              Lượt chơi miễn phí
+            </Button>
+          </div>
+          <Button
+              size="large"
+              type='primary'
+              onClick={() => {
+                onAddNew();
+              }}
+              className="max-w-fit"
+            >
+              Thêm mới
+            </Button>
+        </div>
         <div>
           <CommonTable<IReward>
             rowKey={(record) => record.id}
@@ -198,6 +324,7 @@ const RewardComponent = () => {
             className={classes.table}
           />
         </div>
+        <ModalModifyReward open={openAdd} rewardEdit={rewardEdit} resetRewardEdit={resetRewardEdit} handleClose={() => setOpenAdd(!openAdd)} />
       </BoxFilter>
     </div>
   );

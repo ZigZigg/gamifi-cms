@@ -34,6 +34,7 @@ export const axiosBaseQuery =
           'X-Timezone': tz,
         },
       });
+      console.log("🚀 ~ result:", result)
       if (result.data.data) {
         return { data: result.data.data };
       } else {

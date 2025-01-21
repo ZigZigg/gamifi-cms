@@ -2,7 +2,7 @@
 
 export const colors = {
   light: {
-    colorPrimary: '#1414A0',
+    colorPrimary: '#FF891D',
     colorError: '#EC4F43',
     colorText: 'black',
   },

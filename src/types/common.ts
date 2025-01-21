@@ -37,6 +37,27 @@ export interface IndustryItem {
   updated_at: string;
 }
 
+export interface MasterDataItem {
+  id: number;
+  type: string;
+  value: string;
+  name: string;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface CampaignItem {
+  id: number;
+  name: string;
+  status: string;
+  startDate: string;
+  endDate: string;
+  startDateHold: string;
+  endDateHold: string;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface IndustryRequest {
   records: IndustryItem[];
   total: number;
