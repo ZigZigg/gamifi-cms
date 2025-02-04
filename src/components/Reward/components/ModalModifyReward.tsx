@@ -25,7 +25,7 @@ const initialValues = {
 }
 const ModalModifyReward = (props: IProps) => {
     const { handleClose, rewardEdit, resetRewardEdit} = props
-    const { openModal, closeModal, } = useNotice();
+    const { closeModal } = useNotice();
     const [form] = Form.useForm();
     const { masterData, activeCampaign } = useAppSelector((state) => state.common);
     const [addNewReward, {isSuccess}] = useAddNewRewardMutation();

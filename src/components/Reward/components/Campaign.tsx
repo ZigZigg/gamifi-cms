@@ -13,7 +13,6 @@ import CommonService from '@/services/common.service';
 import { IconType } from 'antd/es/notification/interface';
 import NotificationContext from '@/providers/NotificationContext';
 
-type Props = {}
 
 const initialValues = {
     name: '',
@@ -24,7 +23,7 @@ const initialValues = {
     status: 'ACTIVE'
 }
 
-const Campaign = (props: Props) => {
+const Campaign = () => {
     const [form] = Form.useForm();
     const [isEditing, setIsEditing] = React.useState(false);
     const { activeCampaign } = useAppSelector((state) => state.common);
