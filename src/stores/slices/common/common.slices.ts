@@ -52,7 +52,9 @@ const commonSlice = createSlice({
         state.masterData = [];
       })
       .addCase(getListMasterData.fulfilled, (state, action) => {
-        state.masterData = action.payload;
+        const data = action.payload?.filter((value:any) => !['GOOD_LUCK', 'AIRPOD_DEVICE', 'IPHONE_DEVICE'].includes(value.value));
+        
+        state.masterData = data;
       })
       .addCase(getListMasterData.rejected, (state) => {
         state.masterData = [];

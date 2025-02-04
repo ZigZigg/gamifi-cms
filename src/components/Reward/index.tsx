@@ -10,7 +10,7 @@ import {
   RewardStatus,
   TurnType,
 } from '@/types/reward';
-import {  useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { DATE_FORMAT } from '@/constants';
 import BoxFilter from '@/atomics/BoxFilter/BoxFilter';
 import CommonTable from '@/atomics/CommonTable/CommonTable';
@@ -25,6 +25,7 @@ import { useAppDispatch } from '@/stores';
 import { getActiveCampaign, getListMasterData } from '@/stores/slices/common/common.slices';
 import { useNotice } from '@/providers/NoticeProvider';
 import NotificationContext from '@/providers/NotificationContext';
+import Campaign from './components/Campaign';
 const RewardComponent = () => {
   const initFilters = {
     limit: 10,
@@ -42,7 +43,7 @@ const RewardComponent = () => {
   }
   const dispatch = useAppDispatch();
   const { openModal, closeModal } = useNotice();
-  const [deleteReward, {isSuccess: isSuccessDeleteReward}] = useDeleteRewardMutation()
+  const [deleteReward, { isSuccess: isSuccessDeleteReward }] = useDeleteRewardMutation()
 
   const {
     handleChangePagination,
@@ -56,7 +57,7 @@ const RewardComponent = () => {
     useGetRewardListQuery,
     filters
   );
-  const {type} = queryParams
+  const { type } = queryParams
 
   const paginationInfo = {
     total: data?.total || 0,
@@ -104,7 +105,7 @@ const RewardComponent = () => {
         description: 'Bạn có muốn xóa phần quà này?',
         width: 482,
         onOk: () => {
-          deleteReward({id: Number(id)});
+          deleteReward({ id: Number(id) });
           closeModal();
         },
         onCancel: closeModal,
@@ -155,7 +156,7 @@ const RewardComponent = () => {
       width: 162,
       align: 'center',
       render: (value) => {
-        return <div>{value}</div>;
+        return <div>{(value === '0' || !value) ? '-' : value}</div>;
       },
     },
     {
@@ -165,7 +166,7 @@ const RewardComponent = () => {
       width: 100,
       align: 'center',
       render: (value) => {
-        return <div>{value}</div>;
+        return <div>{(value === '0' || !value) ? '-' : value}</div>;
       },
     },
     {
@@ -237,6 +238,9 @@ const RewardComponent = () => {
       width: 120,
       align: 'center',
       render: (_value, record) => {
+        if(record.turntype.value === 'GOOD_LUCK'){
+          return null
+        }
         return <div className="flex justify-center gap-2 hover:cursor-pointer">
           <div
             className={'cursor-pointer'}
@@ -256,8 +260,8 @@ const RewardComponent = () => {
           >
             <EditIcon />
           </div>
-      </div>
-        
+        </div>
+
       }
     },
   ];
@@ -276,8 +280,14 @@ const RewardComponent = () => {
     getCampaign();
   }, []);
 
+  const currentData = useMemo(() => {
+    const result = data?.records?.filter((item) => !['AIRPOD_DEVICE', 'IPHONE_DEVICE'].includes(item.turntype.value));
+    return result
+  },[data?.records])
+
   return (
     <div className="relative flex flex-col gap-5">
+      <Campaign />
       <BoxFilter className="px-0 py-8">
         <div className='flex items-center justify-between px-6 pb-5 gap-4'>
           <div className='flex items-center gap-4'>
@@ -295,7 +305,7 @@ const RewardComponent = () => {
               size="large"
               type={type === TurnType.FREE ? 'primary' : 'default'}
               onClick={() => {
-              onChangeTab(TurnType.FREE);
+                onChangeTab(TurnType.FREE);
               }}
               className="max-w-fit"
             >
@@ -303,21 +313,21 @@ const RewardComponent = () => {
             </Button>
           </div>
           <Button
-              size="large"
-              type='primary'
-              onClick={() => {
-                onAddNew();
-              }}
-              className="max-w-fit"
-            >
-              Thêm mới
-            </Button>
+            size="large"
+            type='primary'
+            onClick={() => {
+              onAddNew();
+            }}
+            className="max-w-fit"
+          >
+            Thêm mới
+          </Button>
         </div>
         <div>
           <CommonTable<IReward>
             rowKey={(record) => record.id}
             columns={columns}
-            dataSource={data?.records || []}
+            dataSource={currentData || []}
             pagination={paginationInfo}
             loading={isLoading || isFetching}
             onChangePagination={handleChangePagination}

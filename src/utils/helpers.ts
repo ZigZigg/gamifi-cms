@@ -30,6 +30,7 @@ export interface IRoute {
   children?: IRoute[];
   accessMenu?:
     | 'rewards'
+    | 'reward-history';
 }
 
 export const systemRoutes: IRoute[] = [
@@ -38,6 +39,12 @@ export const systemRoutes: IRoute[] = [
     key: 'rewards',
     path: 'rewards',
     accessMenu: 'rewards',
+  },
+  {
+    breadcrumbName: 'Báo cáo',
+    key: 'rewadHistory',
+    path: 'reward-history',
+    accessMenu: 'reward-history',
   },
 ];
 

@@ -2,6 +2,7 @@ import MainLayout from '@/layouts';
 import AuthLayout from '@/layouts/AuthLayout/AuthLayout';
 import { LoginPage } from '@/pages/Auth/Login/loadable';
 import { HomePage } from '@/pages/HomePage/loadable';
+import { RewardHistoryPage } from '@/pages/RewardHistoryPage/loadable';
 import { RewardPage } from '@/pages/RewardPage/loadable';
 import { Navigate, useRoutes } from 'react-router-dom';
 
@@ -22,6 +23,11 @@ const RouterList = () => {
         {
           path: '/rewards',
           element: <RewardPage />,
+          children: [],
+        },
+        {
+          path: '/reward-history',
+          element: <RewardHistoryPage />,
           children: [],
         },
       ],

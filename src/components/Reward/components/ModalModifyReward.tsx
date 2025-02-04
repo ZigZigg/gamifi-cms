@@ -55,18 +55,22 @@ const ModalModifyReward = (props: IProps) => {
           }
     };
     const onCancelAdd = () => {
-        openModal({
-            description: 'Bạn có chắc chắn muốn hủy bỏ không?',
-            onOk: () => {
-                form.resetFields();
-                resetRewardEdit?.();
-                handleClose?.();
-                closeModal();
-            },
-            onCancel: () => {
-                closeModal();
-            },
-        });
+        // openModal({
+        //     description: 'Bạn có chắc chắn muốn hủy bỏ không?',
+        //     onOk: () => {
+        //         form.resetFields();
+        //         resetRewardEdit?.();
+        //         handleClose?.();
+        //         closeModal();
+        //     },
+        //     onCancel: () => {
+        //         closeModal();
+        //     },
+        // });
+        form.resetFields();
+        resetRewardEdit?.();
+        handleClose?.();
+        closeModal();
     };
 
     useEffect(() => {
@@ -91,11 +95,11 @@ const ModalModifyReward = (props: IProps) => {
         return [
             {
                 value: 'FREE',
-                label: 'FREE',
+                label: 'Miễn phí',
             },
             {
                 value: 'PAID',
-                label: 'PAID',
+                label: 'Trả phí',
             }
         ]
     }, []);

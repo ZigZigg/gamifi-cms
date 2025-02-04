@@ -27,6 +27,7 @@ export const DATE_FORMAT = {
   YYYYMMDD: 'YYYYMMDD',
   YYYYMM: 'YYYY-MM',
   HHMMSS: 'HH:mm:ss',
+  DATE_DMY_Hm: 'DD/MM/YYYY HH:mm',
 };
 
 export const PageSizeOptions = ['5', '10', '50', '100'];
@@ -38,6 +39,7 @@ export const urlIgnoreCheckInterceptor = [
   '/settlement-list/export',
   '/report/export',
   '/settlement-list/export-template-edit',
+  '/reward-history/export'
 ];
 
 export const locationPathName = {

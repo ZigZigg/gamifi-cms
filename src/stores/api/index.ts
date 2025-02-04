@@ -8,7 +8,7 @@ const baseUrl = process.env.API_ENDPOINT;
 export const apiSlice = createApi({
   reducerPath: 'api',
   baseQuery: axiosBaseQuery({ baseUrl: baseUrl }),
-  tagTypes: ['GAMI_Reward_List'],
+  tagTypes: ['GAMI_Reward_List', 'GAMI_Reward_History'],
   endpoints: (builder) => ({
     mockData: builder.query<ExampleDatResponse, ExampleDataRequest>({
       query: (params: ExampleDataRequest): FetchArgs => ({

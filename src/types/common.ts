@@ -58,6 +58,16 @@ export interface CampaignItem {
   updated_at: string;
 }
 
+export interface CampaignUpdateRequest {
+  id: number;
+  name: string;
+  status: string;
+  startDate: string;
+  endDate: string;
+  startDateHold: string;
+  endDateHold: string;
+}
+
 export interface IndustryRequest {
   records: IndustryItem[];
   total: number;

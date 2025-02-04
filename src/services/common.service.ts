@@ -1,5 +1,6 @@
-import { DepartmentsRequest, IndustryRequest } from '@/types/common';
+import { CampaignUpdateRequest, DepartmentsRequest, IndustryRequest } from '@/types/common';
 import Instance from './instance';
+import { IRewardHistoryListRequest } from '@/types/rewardHistory';
 
 const getDepartments = async (params: DepartmentsRequest): Promise<any> => {
   return await Instance.get(`/departments`, {
@@ -18,11 +19,30 @@ const getActiveCampaign = async (): Promise<any> => {
   return await Instance.get(`/campaign/getActiveCampaign`);
 }
 
+const updateCampaign = async (
+  params: CampaignUpdateRequest
+): Promise<any> => {
+  return await Instance.put(`/campaign/${params.id}`, params);
+};
+
+const exportRewardHistory = async (
+  params: IRewardHistoryListRequest
+): Promise<any> => {
+  return await Instance.post(`/reward-history/export`, params, {
+    responseType: 'arraybuffer',
+    headers: {
+      Accept: 'application/octet-stream',
+    },
+  });
+};
+
 const CommonService = {
   getDepartments,
   getListIndustry,
   getListMasterData,
-  getActiveCampaign
+  getActiveCampaign,
+  updateCampaign,
+  exportRewardHistory
 };
 
 export default CommonService;
