@@ -8,6 +8,7 @@ export interface IRewardHistory{
         fullName: string;
         phoneNumber: string;
     }
+    note: string;
     turntype: ITurnType;
 }
 export interface IRewardHistoryListRequest {

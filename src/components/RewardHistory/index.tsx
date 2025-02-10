@@ -124,6 +124,17 @@ const RewardHistoryComponent = () => {
       },
     },
     {
+      title: 'Ghi chú',
+      dataIndex: 'note',
+      key: 'note',
+      width: 320,
+      align: 'center',
+      render: (value) => {
+        console.log("🚀 ~ RewardHistoryComponent ~ value:", value)
+        return <div>{(value === '0' || !value) ? '-' : value}</div>;
+      },
+    },
+    {
       title: 'Thời gian nhận quà',
       dataIndex: 'receive_date',
       key: 'receive_date',
