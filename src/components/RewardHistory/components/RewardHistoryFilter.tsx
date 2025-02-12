@@ -31,13 +31,20 @@ const RewardHistoryFilter = (props: Props) => {
     const startDateValue = Form.useWatch('startDate', form);
     const rewardTypeOpt = useMemo(() => {
         if (!masterData?.length) return [];
-        const currentData = masterData.map((item) => {
+        const rewardTypes = masterData.map((item) => {
             return {
                 value: item?.id,
                 label: item?.name,
             };
         });
-        return currentData;
+        const defaultRewardTypes = [
+            {
+                value: '',
+                label: 'Tất cả'
+            },
+            ...rewardTypes
+        ]
+        return defaultRewardTypes;
     }, [masterData]);
     const handleStartDateChange = (selectedDate: any) => {
         if (endDateValue && selectedDate) {
@@ -79,7 +86,7 @@ const RewardHistoryFilter = (props: Props) => {
         onSearch?.(payload);
     };
     useEffect(() => {
-        let tmp = { ...initFormFilter, rewardType: Number(initFormFilter.rewardType) };
+        let tmp = { ...initFormFilter, rewardType: Number(initFormFilter.rewardType) || '' };
         if (tmp.filter) tmp = { ...tmp, ...tmp.filter };
         if (tmp.startDate) {
             tmp.startDate = dayjs(tmp.startDate);
@@ -112,7 +119,7 @@ const RewardHistoryFilter = (props: Props) => {
                         <Input maxLength={200} style={{ width: 518 }} />
                     </Form.Item>
                     <Form.Item label={'Loại quà'} name="rewardType">
-                        <SelectSAC options={rewardTypeOpt || []} style={{ width: 518 }} />
+                        <SelectSAC options={rewardTypeOpt || []} style={{ width: 518 }}  />
                     </Form.Item>
                     <div className="flex flex-col">
                         <span className="ml-[2px] mr-2">Thời gian nhận quà:</span>
