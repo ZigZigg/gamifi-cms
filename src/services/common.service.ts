@@ -15,6 +15,10 @@ const getListMasterData = async (): Promise<any> => {
   return await Instance.get(`/rewards/getMasterData`);
 }
 
+const getListAllReward = async (): Promise<any> => {
+  return await Instance.get(`/rewards/all`);
+}
+
 const getActiveCampaign = async (): Promise<any> => {
   return await Instance.get(`/campaign/getActiveCampaign`);
 }
@@ -42,7 +46,8 @@ const CommonService = {
   getListMasterData,
   getActiveCampaign,
   updateCampaign,
-  exportRewardHistory
+  exportRewardHistory,
+  getListAllReward
 };
 
 export default CommonService;

@@ -4,6 +4,7 @@ import { LoginPage } from '@/pages/Auth/Login/loadable';
 import { HomePage } from '@/pages/HomePage/loadable';
 import { RewardHistoryPage } from '@/pages/RewardHistoryPage/loadable';
 import { RewardPage } from '@/pages/RewardPage/loadable';
+import { RewardVipPage } from '@/pages/RewardVip/loadable';
 import { Navigate, useRoutes } from 'react-router-dom';
 
 const RouterList = () => {
@@ -28,6 +29,11 @@ const RouterList = () => {
         {
           path: '/reward-history',
           element: <RewardHistoryPage />,
+          children: [],
+        },
+        {
+          path: '/reward-vip',
+          element: <RewardVipPage />,
           children: [],
         },
       ],

@@ -3,16 +3,19 @@ import {
   CampaignItem,
   MasterDataItem,
 } from '@/types/common';
+import { IReward } from '@/types/reward';
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { PersistConfig, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 export interface CommonState {
   masterData: MasterDataItem[] | [];
+  listReward: IReward[] | [];
   activeCampaign: CampaignItem | null;
 }
 
 const initialState: CommonState = {
   masterData: [],
+  listReward: [],
   activeCampaign: null,
 };
 
@@ -21,6 +24,18 @@ export const getListMasterData = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const data = await CommonService.getListMasterData()
+      return data;
+    } catch (error) {
+      return thunkAPI.rejectWithValue(error);
+    }
+  }
+);
+
+export const getListAllReward = createAsyncThunk(
+  'common/getListAllReward',
+  async (_, thunkAPI) => {
+    try {
+      const data = await CommonService.getListAllReward();
       return data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error);
@@ -58,6 +73,18 @@ const commonSlice = createSlice({
       })
       .addCase(getListMasterData.rejected, (state) => {
         state.masterData = [];
+      });
+    builder
+      .addCase(getListAllReward.pending, (state) => {
+        state.listReward = [];
+      })
+      .addCase(getListAllReward.fulfilled, (state, action) => {
+        const data = action.payload
+        
+        state.listReward = data;
+      })
+      .addCase(getListAllReward.rejected, (state) => {
+        state.listReward = [];
       });
     builder
       .addCase(getActiveCampaign.pending, (state) => {

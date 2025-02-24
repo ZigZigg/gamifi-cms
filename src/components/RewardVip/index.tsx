@@ -1,15 +1,7 @@
 import { useTableManagement } from '@/hooks/useTableManagement';
 // import { useNotice } from '@/providers/NoticeProvider';
-import { useDeleteRewardMutation, useGetRewardListQuery } from '@/stores/api/rewards';
 import { CustomColumnsType } from '@/types/progress';
 import { formatDateUTC } from '@/utils/date';
-import {
-  IReward,
-  IRewardListRequest,
-  IRewardListResponse,
-  RewardStatus,
-  TurnType,
-} from '@/types/reward';
 import { useCallback, useContext, useEffect, useMemo, useState } from 'react';
 import { DATE_FORMAT } from '@/constants';
 import BoxFilter from '@/atomics/BoxFilter/BoxFilter';
@@ -20,21 +12,21 @@ import DeleteIcon from '@/atomics/SvgIcons/DeleteIcon';
 import EditIcon from '@/atomics/SvgIcons/EditIcon';
 import { IconType } from 'antd/es/notification/interface';
 
-import ModalModifyReward from './components/ModalModifyReward';
 import { useAppDispatch } from '@/stores';
-import { getActiveCampaign, getListMasterData } from '@/stores/slices/common/common.slices';
+import { getActiveCampaign, getListAllReward, getListMasterData } from '@/stores/slices/common/common.slices';
 import { useNotice } from '@/providers/NoticeProvider';
 import NotificationContext from '@/providers/NotificationContext';
-import Campaign from './components/Campaign';
-const RewardComponent = () => {
+import { IRewardVip, IRewardVipListRequest, IRewardVipListResponse, RewardVipStatus } from '@/types/rewardVip';
+import { useDeleteRewardVipMutation, useGetRewardListVipQuery } from '@/stores/api/rewardVip';
+import ModalModifyRewardVip from './components/ModalModifyReward';
+const RewardVipComponent = () => {
   const initFilters = {
     limit: 10,
     offset: 0,
-    type: TurnType.PAID,
   };
-  const [filters, setFilters] = useState<IRewardListRequest>(initFilters);
+  const [filters, setFilters] = useState<IRewardVipListRequest>(initFilters);
   const [openAdd, setOpenAdd] = useState<boolean>(false);
-  const [rewardEdit, setRewardEdit] = useState<IReward | undefined>(undefined);
+  const [rewardEdit, setRewardEdit] = useState<IRewardVip | undefined>(undefined);
   const onAddNew = () => {
     setOpenAdd(true);
   };
@@ -43,7 +35,7 @@ const RewardComponent = () => {
   }
   const dispatch = useAppDispatch();
   const { openModal, closeModal } = useNotice();
-  const [deleteReward, { isSuccess: isSuccessDeleteReward }] = useDeleteRewardMutation()
+  const [deleteReward, { isSuccess: isSuccessDeleteReward }] = useDeleteRewardVipMutation()
 
   const {
     handleChangePagination,
@@ -53,11 +45,10 @@ const RewardComponent = () => {
     isLoading,
     isFetching,
     refetch,
-  } = useTableManagement<any, IRewardListResponse>(
-    useGetRewardListQuery,
+  } = useTableManagement<any, IRewardVipListResponse>(
+    useGetRewardListVipQuery,
     filters
   );
-  const { type } = queryParams
 
   const paginationInfo = {
     total: data?.total || 0,
@@ -102,7 +93,7 @@ const RewardComponent = () => {
     (event: React.MouseEvent<HTMLInputElement>, id: string) => {
       event.stopPropagation();
       openModal({
-        description: 'Bạn có muốn xóa phần quà này?',
+        description: 'Bạn có muốn xóa dữ liệu này?',
         width: 482,
         onOk: () => {
           deleteReward({ id: Number(id) });
@@ -115,19 +106,16 @@ const RewardComponent = () => {
   );
   useEffect(() => {
     if (isSuccessDeleteReward) {
-      onNotification('Xóa phần quà thành công!', 'success');
+      onNotification('Xóa thành công!', 'success');
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isSuccessDeleteReward]);
-  const onChangeTab = (type: TurnType) => {
-    onFiltering({ ...initFilters, type });
-  }
 
-  const onOpenEdit = (record: IReward) => {
+  const onOpenEdit = (record: IRewardVip) => {
     setRewardEdit(record);
     setOpenAdd(true);
   }
-  const columns: CustomColumnsType<IReward> = [
+  const columns: CustomColumnsType<IRewardVip> = [
     {
       title: 'STT',
       dataIndex: 'id',
@@ -140,74 +128,23 @@ const RewardComponent = () => {
       },
     },
     {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
-      width: 63,
-      align: 'center',
-      fixed: 'left',
-      render: (_value, _record, index) => {
-        return <div>{_value}</div>;
-      },
-    },
-    {
-      title: 'Loại quà',
-      dataIndex: 'turntype',
-      key: 'turntype',
+      title: 'Thuê bao',
+      dataIndex: 'phone_number',
+      key: 'phone_number',
       width: 237,
       align: 'center',
       render: (value) => {
-        return <div>{value.name}</div>;
+        return <div>{value}</div>;
       },
     },
     {
-      title: 'Giá trị quà',
+      title: 'Thông tin quà',
       dataIndex: 'value',
       key: 'value',
       width: 162,
       align: 'center',
-      render: (value) => {
-        return <div>{(value === '0' || !value) ? '-' : value}</div>;
-      },
-    },
-    {
-      title: 'Tổng số lượng',
-      dataIndex: 'initial_quantity',
-      key: 'initial_quantity',
-      width: 100,
-      align: 'center',
-      render: (value) => {
-        return <div>{(value === '0' || !value) ? '-' : value}</div>;
-      },
-    },
-    {
-      title: 'Tỉ lệ ra quà (%)',
-      dataIndex: 'winning_rate',
-      key: 'winning_rate',
-      width: 100,
-      align: 'center',
-      render: (value) => {
-        return <div>{value}</div>;
-      },
-    },
-    {
-      title: 'Số lượng hold',
-      dataIndex: 'hold_quantity',
-      key: 'hold_quantity',
-      width: 100,
-      align: 'center',
-      render: (value) => {
-        return <div>{value}</div>;
-      },
-    },
-    {
-      title: 'Số lượng tồn kho',
-      dataIndex: 'quantity',
-      key: 'quantity',
-      width: 100,
-      align: 'center',
-      render: (value) => {
-        return <div>{value}</div>;
+      render: (_value, record) => {
+        return <div>{`${record?.id} - ${record?.turntype?.name} - Giá trị: ${record?.reward.value} - ${record?.reward.type}`}</div>;
       },
     },
     {
@@ -218,7 +155,7 @@ const RewardComponent = () => {
       align: 'center',
       render: (value) => {
         return (
-          <div>{value === RewardStatus.ACTIVE ? 'Kích hoạt' : 'Đang hold'}</div>
+          <div>{value === RewardVipStatus.PENDING ? 'Chờ nhận quà' : 'Đã nhận quà'}</div>
         );
       },
     },
@@ -249,9 +186,7 @@ const RewardComponent = () => {
       width: 120,
       align: 'center',
       render: (_value, record) => {
-        if(record.turntype.value === 'GOOD_LUCK'){
-          return null
-        }
+        if(record.status === RewardVipStatus.REDEEMED) return null;
         return <div className="flex justify-center gap-2 hover:cursor-pointer">
           <div
             className={'cursor-pointer'}
@@ -278,51 +213,21 @@ const RewardComponent = () => {
   ];
 
   useEffect(() => {
-    const getMasterData = async () => {
-      await dispatch(getListMasterData());
+    const getListRewards = async () => {
+      await dispatch(getListAllReward());
     };
-    getMasterData();
-  }, []);
-
-  useEffect(() => {
-    const getCampaign = async () => {
-      await dispatch(getActiveCampaign());
-    };
-    getCampaign();
+    getListRewards();
   }, []);
 
   const currentData = useMemo(() => {
-    const result = data?.records?.filter((item) => !['AIRPOD_DEVICE', 'IPHONE_DEVICE'].includes(item.turntype.value));
+    const result = data?.records;
     return result
   },[data?.records])
 
   return (
     <div className="relative flex flex-col gap-5">
-      <Campaign />
       <BoxFilter className="px-0 py-8">
         <div className='flex items-center justify-between px-6 pb-5 gap-4'>
-          <div className='flex items-center gap-4'>
-            <Button
-              size="large"
-              type={type === TurnType.PAID ? 'primary' : 'default'}
-              onClick={() => {
-                onChangeTab(TurnType.PAID);
-              }}
-              className="max-w-fit"
-            >
-              Lượt chơi mất phí
-            </Button>
-            <Button
-              size="large"
-              type={type === TurnType.FREE ? 'primary' : 'default'}
-              onClick={() => {
-                onChangeTab(TurnType.FREE);
-              }}
-              className="max-w-fit"
-            >
-              Lượt chơi miễn phí
-            </Button>
-          </div>
           <Button
             size="large"
             type='primary'
@@ -335,7 +240,7 @@ const RewardComponent = () => {
           </Button>
         </div>
         <div>
-          <CommonTable<IReward>
+          <CommonTable<IRewardVip>
             rowKey={(record) => record.id}
             columns={columns}
             dataSource={currentData || []}
@@ -345,10 +250,10 @@ const RewardComponent = () => {
             className={classes.table}
           />
         </div>
-        <ModalModifyReward open={openAdd} rewardEdit={rewardEdit} resetRewardEdit={resetRewardEdit} handleClose={() => setOpenAdd(!openAdd)} />
+        <ModalModifyRewardVip open={openAdd} rewardEdit={rewardEdit} resetRewardEdit={resetRewardEdit} handleClose={() => setOpenAdd(!openAdd)} />
       </BoxFilter>
     </div>
   );
 };
 
-export default RewardComponent;
+export default RewardVipComponent;

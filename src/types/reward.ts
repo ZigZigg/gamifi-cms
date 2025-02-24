@@ -20,6 +20,7 @@ export interface IReward {
     initial_quantity: number;
     status: RewardStatus;
     turntype: ITurnType;
+    turnType?: ITurnType;
 }
 
 export interface IRewardRequest {

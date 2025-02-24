@@ -1,0 +1,99 @@
+@import '@/styles/_mixins.scss';
+@import '@/styles/constants.scss';
+
+.table {
+  :global {
+    td.ant-table-cell {
+      div {
+        width: 100%;
+        min-height: 1.5rem !important;
+      }
+    }
+    th.ant-table-cell.orange {
+      background-color: #ff9f43 !important;
+    }
+    th.ant-table-cell.teal {
+      background-color: #12a39e !important;
+    }
+    th.ant-table-cell.green {
+      background-color: #28c76f !important;
+    }
+
+    th.ant-table-cell {
+      height: auto !important;
+      padding: 5px 16px !important;
+    }
+
+    .ant-checkbox-wrapper-disabled {
+      cursor: initial !important;
+    }
+  }
+
+  .column_notAllow {
+    > * {
+      color: #909092 !important;
+    }
+    pointer-events: none;
+  }
+}
+
+.note {
+  @include text-ellipsis;
+  color: #0000ff;
+  cursor: pointer;
+  text-decoration: underline;
+}
+.ellipsis {
+  @include text-ellipsis;
+}
+
+.rowActive {
+  background-color: #faaeae !important;
+  td {
+    background-color: #faaeae !important;
+  }
+
+  .column_notAllow {
+    > * {
+      color: #9a9a9a !important;
+    }
+  }
+}
+
+.rowContractPastNotiDate {
+  background-color: #FFD493 !important;
+  td {
+    background-color: #FFD493 !important;
+  }
+
+  .column_notAllow {
+    > * {
+      color: #9a9a9a !important;
+    }
+  }
+}
+
+.blur{
+ width: 100%;
+ height: 100%;
+ background-color: rgba(0, 0, 0, 0.57);
+ position: absolute;
+ z-index: 999;
+ overflow: hidden;
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ flex-direction: column;
+ font-size: 18px;
+ font-weight: 700;
+ color: #FFFFFF;
+ gap: 30px;
+ :global{
+  .ant-spin-dot-item{
+    background-color: white;
+  }
+ }
+}
+.textDisable{
+  color: #909092;
+}
