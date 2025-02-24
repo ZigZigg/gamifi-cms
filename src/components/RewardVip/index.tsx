@@ -144,7 +144,7 @@ const RewardVipComponent = () => {
       width: 162,
       align: 'center',
       render: (_value, record) => {
-        return <div>{`${record?.id} - ${record?.turntype?.name} - Giá trị: ${record?.reward.value} - ${record?.reward.type}`}</div>;
+        return <div>{`${record?.reward.id} - ${record?.turntype?.name} - Giá trị: ${record?.reward.value} - ${record?.reward.type}`}</div>;
       },
     },
     {
