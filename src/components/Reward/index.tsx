@@ -146,7 +146,7 @@ const RewardComponent = () => {
       width: 63,
       align: 'center',
       fixed: 'left',
-      render: (_value, _record, index) => {
+      render: (_value, _record) => {
         return <div>{_value}</div>;
       },
     },

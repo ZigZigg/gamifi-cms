@@ -13,7 +13,7 @@ import EditIcon from '@/atomics/SvgIcons/EditIcon';
 import { IconType } from 'antd/es/notification/interface';
 
 import { useAppDispatch } from '@/stores';
-import { getActiveCampaign, getListAllReward, getListMasterData } from '@/stores/slices/common/common.slices';
+import { getListAllReward } from '@/stores/slices/common/common.slices';
 import { useNotice } from '@/providers/NoticeProvider';
 import NotificationContext from '@/providers/NotificationContext';
 import { IRewardVip, IRewardVipListRequest, IRewardVipListResponse, RewardVipStatus } from '@/types/rewardVip';
