@@ -4,7 +4,7 @@ import { Form, Input } from 'antd';
 import ModalSAC from '@/atomics/ModalSAC/ModalSAC';
 import { useAppSelector } from '@/stores';
 import SelectSAC from '@/atomics/Select/SelectSAC';
-import { removeEmpty, trimValues, validateAndSanitizeValue } from '@/utils/helpers';
+import { trimValues, validateAndSanitizeValue } from '@/utils/helpers';
 import { REGEX } from '@/constants';
 import { useAddNewRewardMutation, useEditRewardMutation } from '@/stores/api/rewards';
 import { IReward } from '@/types/reward';
