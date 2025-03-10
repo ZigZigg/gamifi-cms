@@ -44,7 +44,7 @@ const ModalModifyReward = (props: IProps) => {
                 turnType: values?.turnTypeId,
                 campaign: activeCampaign?.id,
             };
-            const currentPayload = removeEmpty(trimValues(payload));
+            const currentPayload = trimValues(payload);
             if(rewardEdit){
                 editReward({id: rewardEdit.id, ...currentPayload})
             }else{
